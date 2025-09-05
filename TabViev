@@ -1,0 +1,64 @@
+//
+//  tabView.swift
+//  ders1
+//
+//  Created by Yasin Elüstü on 5.09.2025.
+//
+
+import SwiftUI
+
+struct tabView: View {
+    
+    //uygulam ilk çalışdığında
+    init() {
+        let appearance = UITabBarAppearance()
+        appearance.backgroundColor = .systemFill
+        
+        //Tüm çıhazlarda çallışsın diye
+        UITabBar.appearance().standardAppearance = appearance
+        UITabBar.appearance().scrollEdgeAppearance = appearance
+        
+        //renk değişimi çin
+        renkdegistir(itemAppearance: appearance.stackedLayoutAppearance)
+        renkdegistir(itemAppearance: appearance.inlineLayoutAppearance)
+        renkdegistir(itemAppearance: appearance.compactInlineLayoutAppearance)
+    }
+    
+    func renkdegistir (itemAppearance: UITabBarItemAppearance){
+        //seçilmiş durum
+        itemAppearance.selected.iconColor = .systemRed
+        itemAppearance.selected.titleTextAttributes = [.foregroundColor: UIColor.systemRed]
+        itemAppearance.selected.titleTextAttributes[.font] = UIFont.systemFont(ofSize: 23, weight: .bold)
+        
+        //seçilmeiş dururmdaki için
+        itemAppearance.normal.iconColor = .systemBlue
+        itemAppearance.normal.titleTextAttributes = [.foregroundColor: UIColor.systemBlue]
+    }
+    
+    var body: some View {
+        NavigationStack {
+            TabView {
+                
+                //Böylede yazabilirsin
+                /*Text("First Tab")
+                    .tabItem {
+                        Image(systemName: "house")
+                        Text("First")
+                    }*/
+                //Sayfaları çağırmak için
+                tabview2().tabItem {
+                    Image(systemName: "music.note")
+                    Text("Second")
+                }
+                ContentView().tabItem {
+                    Image(systemName: "plus")
+                    Text("Third")
+                }
+            }.navigationTitle(Text("TabViev Kullanımı "))
+        }
+    }
+}
+
+#Preview {
+    tabView()
+}
