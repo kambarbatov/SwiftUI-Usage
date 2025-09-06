@@ -1,0 +1,21 @@
+import SwiftUI
+
+struct searchable: View {
+    @State private var araText: String = ""
+    var body: some View {
+      NavigationStack {
+            VStack
+          {
+              
+          }.navigationTitle(Text("Arama"))
+              .searchable(text: $araText)
+              .onChange(of: araText) { _ , s in
+                  print("araama sonucu \(s)")
+              }
+        }
+    }
+}
+
+#Preview {
+    searchable()
+}
